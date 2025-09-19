@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小游戏集合</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.2);
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .game-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .game-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .game-title {
+            font-size: 1.8em;
+            margin: 0 0 15px 0;
+            color: #fff;
+        }
+
+        .game-description {
+            font-size: 1em;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+            opacity: 0.9;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        .coming-soon {
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .coming-soon::after {
+            content: "即将推出";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎮 小游戏集合</h1>
+        <p class="subtitle">精选经典小游戏，随时随地享受游戏乐趣</p>
+    </div>
+
+    <div class="games-container">
+        <div class="game-card">
+            <span class="game-icon">🐍</span>
+            <h2 class="game-title">贪吃蛇</h2>
+            <p class="game-description">
+                经典贪吃蛇游戏，具有渐进式速度系统和萌化设计。
+                使用方向键或WASD控制，挑战你的反应速度！
+            </p>
+            <a href="games/snake.html" class="play-button">开始游戏</a>
+        </div>
+
+        <div class="game-card coming-soon">
+            <span class="game-icon">🎯</span>
+            <h2 class="game-title">打砖块</h2>
+            <p class="game-description">
+                经典打砖块游戏，多种道具和关卡设计。
+                挑战你的精准度和策略思维！
+            </p>
+            <button class="play-button" disabled>敬请期待</button>
+        </div>
+
+        <div class="game-card coming-soon">
+            <span class="game-icon">🚀</span>
+            <h2 class="game-title">飞机大战</h2>
+            <p class="game-description">
+                经典飞机大战，多种敌机和武器升级。
+                挑战你的操作技巧和反应能力！
+            </p>
+            <button class="play-button" disabled>敬请期待</button>
+        </div>
+
+        <div class="game-card coming-soon">
+            <span class="game-icon">🧩</span>
+            <h2 class="game-title">俄罗斯方块</h2>
+            <p class="game-description">
+                经典俄罗斯方块，多种难度级别。
+                挑战你的空间想象力和反应速度！
+            </p>
+            <button class="play-button" disabled>敬请期待</button>
+        </div>
+
+        <div class="game-card coming-soon">
+            <span class="game-icon">🎱</span>
+            <h2 class="game-title">泡泡龙</h2>
+            <p class="game-description">
+                趣味泡泡龙游戏，策略性消除玩法。
+                挑战你的策略思维和预判能力！
+            </p>
+            <button class="play-button" disabled>敬请期待</button>
+        </div>
+
+        <div class="game-card coming-soon">
+            <span class="game-icon">🎪</span>
+            <h2 class="game-title">记忆翻牌</h2>
+            <p class="game-description">
+                记忆翻牌游戏，考验你的记忆力。
+                适合所有年龄段的益智游戏！
+            </p>
+            <button class="play-button" disabled>敬请期待</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>💻 使用 HTML5 + JavaScript 构建 | 🎨 现代化设计 | 🚀 持续更新中</p>
+    </div>
+</body>
+</html>

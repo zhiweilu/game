@@ -864,6 +864,12 @@
 
         // 键盘事件
         document.addEventListener('keydown', (e) => {
+            // 阻止游戏控制键的默认行为
+            const gameKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'p', 'P'];
+            if (gameKeys.includes(e.key)) {
+                e.preventDefault();
+            }
+
             keys[e.key] = true;
 
             if (e.key === 'p' || e.key === 'P') {
@@ -872,6 +878,12 @@
         });
 
         document.addEventListener('keyup', (e) => {
+            // 阻止游戏控制键的默认行为
+            const gameKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'p', 'P'];
+            if (gameKeys.includes(e.key)) {
+                e.preventDefault();
+            }
+
             keys[e.key] = false;
         });
 

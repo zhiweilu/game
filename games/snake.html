@@ -353,9 +353,14 @@
         function changeDirection(event) {
             if (!gameRunning) return;
 
-            event.preventDefault();
-
             const keyPressed = event.keyCode;
+
+            // 只处理游戏相关按键并阻止默认行为
+            const gameKeys = [37, 38, 39, 40, 65, 87, 68, 83]; // Arrow keys and WASD
+            if (gameKeys.includes(keyPressed)) {
+                event.preventDefault();
+            }
+
             const goingUp = dy === -1;
             const goingDown = dy === 1;
             const goingRight = dx === 1;

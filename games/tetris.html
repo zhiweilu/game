@@ -576,6 +576,12 @@
         document.addEventListener('keydown', (e) => {
             if (!gameRunning || isPaused) return;
 
+            // 阻止游戏控制键的默认行为
+            const gameKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' ', 'Enter', 'p', 'P'];
+            if (gameKeys.includes(e.key)) {
+                e.preventDefault();
+            }
+
             switch (e.key) {
                 case 'ArrowLeft':
                     movePiece(-1, 0);

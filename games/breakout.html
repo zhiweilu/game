@@ -136,6 +136,51 @@
             color: #ff6b6b;
         }
 
+        /* 新的控制说明样式 */
+        .control-group {
+            margin-bottom: 15px;
+        }
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+        .control-title {
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+        .control-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.85em;
+        }
+        .key {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            padding: 2px 6px;
+            margin-right: 8px;
+            font-weight: bold;
+            color: #fff;
+            min-width: 24px;
+            text-align: center;
+            display: inline-block;
+        }
+        .action {
+            color: rgba(255,255,255,0.9);
+        }
+        .power-up-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .power-up-item {
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.9);
+            padding: 2px 0;
+        }
+
         .game-over {
             position: absolute;
             top: 50%;
@@ -324,32 +369,38 @@
             </div>
 
             <div class="controls">
-                <h3>操作说明</h3>
-                <table>
-                    <tr>
-                        <td>←/→</td>
-                        <td>移动球拍</td>
-                    </tr>
-                    <tr>
-                        <td>A/D</td>
-                        <td>移动球拍</td>
-                    </tr>
-                    <tr>
-                        <td>空格</td>
-                        <td>发射球/暂停</td>
-                    </tr>
-                    <tr>
-                        <td>P</td>
-                        <td>暂停游戏</td>
-                    </tr>
-                </table>
-                <div style="margin-top: 15px; font-size: 0.8em; opacity: 0.8;">
-                    <strong>道具说明:</strong><br>
-                    🔵 加长球拍<br>
-                    🟢 减速球<br>
-                    🟡 多球<br>
-                    🔴 粘性球拍<br>
-                    🟠 穿透球
+                <h3>🎮 操作指南</h3>
+                <div class="control-group">
+                    <div class="control-title">移动控制</div>
+                    <div class="control-item">
+                        <span class="key">←</span> / <span class="key">→</span>
+                        <span class="action">左右移动球拍</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">A</span> / <span class="key">D</span>
+                        <span class="action">备用移动键</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-title">游戏控制</div>
+                    <div class="control-item">
+                        <span class="key">空格</span>
+                        <span class="action">发射球/暂停游戏</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">P</span>
+                        <span class="action">暂停/继续</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-title">道具效果</div>
+                    <div class="power-up-list">
+                        <div class="power-up-item">🔵 加长球拍</div>
+                        <div class="power-up-item">🟢 减速球</div>
+                        <div class="power-up-item">🟡 多球分裂</div>
+                        <div class="power-up-item">🔴 粘性球拍</div>
+                        <div class="power-up-item">🟠 穿透球</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -897,6 +948,10 @@
 
         // 键盘事件
         document.addEventListener('keydown', (e) => {
+            // 防止方向键和游戏控制键的默认行为
+            if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' '].includes(e.key)) {
+                e.preventDefault();
+            }
             keys[e.key] = true;
 
             if (e.key === ' ') {
@@ -916,8 +971,16 @@
         });
 
         document.addEventListener('keyup', (e) => {
+            // 防止游戏控制键的默认行为
+            if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', ' '].includes(e.key)) {
+                e.preventDefault();
+            }
             keys[e.key] = false;
         });
+
+        // 确保画布可以接收焦点
+        canvas.setAttribute('tabindex', '0');
+        canvas.focus();
 
         // 游戏主循环
         function gameLoop() {

@@ -205,30 +205,39 @@
         }
 
         .game-over {
-            position: absolute;
+            position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             color: white;
             padding: 40px;
             border-radius: 20px;
             text-align: center;
             display: none;
-            z-index: 100;
+            z-index: 1000;
             border: 3px solid #ff6b6b;
-            min-width: 300px;
+            min-width: 350px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .game-over h2 {
             margin: 0 0 20px 0;
             color: #ff6b6b;
-            font-size: 2em;
+            font-size: 2.2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .game-over p {
-            margin: 10px 0;
-            font-size: 1.2em;
+            margin: 8px 0;
+            font-size: 1.1em;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .game-over p span {
+            color: #4ecdc4;
+            font-weight: bold;
         }
 
         .restart-btn {
@@ -983,7 +992,9 @@
             document.getElementById('finalBricks').textContent = totalBricksDestroyed;
             document.getElementById('finalCombo').textContent = maxCombo;
             document.getElementById('gameOverTitle').textContent = lives <= 0 ? '游戏结束!' : '恭喜通关!';
+            console.log('正在显示游戏结束界面...');
             document.getElementById('gameOver').style.display = 'block';
+            console.log('游戏结束界面display属性:', document.getElementById('gameOver').style.display);
         }
 
         // 重新开始游戏

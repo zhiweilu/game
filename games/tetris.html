@@ -15,16 +15,20 @@
             align-items: center;
             min-height: 100vh;
             color: white;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .game-container {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             background: rgba(0,0,0,0.3);
-            padding: 30px;
+            padding: 20px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-height: 95vh;
+            max-width: 1200px;
         }
 
         .game-board {
@@ -33,74 +37,162 @@
 
         .game-title {
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 2em;
+            margin-bottom: 15px;
+            font-size: 1.8em;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         #gameCanvas {
             border: 3px solid #fff;
-            border-radius: 10px;
-            background: rgba(0,0,0,0.8);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            background: rgba(0,0,0,0.9);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            width: 500px;
+            height: 500px;
         }
 
         .side-panel {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            min-width: 200px;
+            gap: 15px;
+            min-width: 280px;
+            max-width: 300px;
+            height: fit-content;
+            max-height: 500px;
         }
 
         .info-box {
             background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 12px;
+            border-radius: 12px;
             border: 2px solid rgba(255,255,255,0.2);
             text-align: center;
         }
 
+        .info-box:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
         .info-box h3 {
-            margin: 0 0 15px 0;
+            margin: 0 0 10px 0;
             color: #4ecdc4;
-            font-size: 1.2em;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         .score {
             font-size: 1.5em;
             font-weight: bold;
             color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
         }
 
         .level {
             font-size: 1.2em;
+            font-weight: bold;
             color: #45b7d1;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         .lines {
             font-size: 1.1em;
+            font-weight: bold;
             color: #96ceb4;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* 紧凑统计样式 */
+        .compact-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+            font-size: 0.9em;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+
+        /* 游戏控制样式 */
+        .game-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-buttons .game-btn {
+            flex: 1;
+            padding: 8px 12px;
+            font-size: 0.9em;
+        }
+
+        .game-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 2px;
+        }
+
+        .game-btn.full-width {
+            width: 100%;
+        }
+
+        .game-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 
         #nextCanvas {
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 8px;
-            background: rgba(0,0,0,0.5);
-            margin-top: 10px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 10px;
+            background: rgba(0,0,0,0.7);
+            margin-top: 12px;
+            width: 140px;
+            height: 100px;
         }
 
         .controls {
             background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 15px;
+            border-radius: 12px;
             border: 2px solid rgba(255,255,255,0.2);
         }
 
         .controls h3 {
-            margin: 0 0 15px 0;
+            margin: 0 0 10px 0;
             color: #4ecdc4;
             text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         .controls table {
@@ -109,9 +201,10 @@
         }
 
         .controls td {
-            padding: 8px;
+            padding: 5px;
             text-align: left;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            line-height: 1.3;
         }
 
         .controls td:first-child {
@@ -163,41 +256,153 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
+        .pause-controls {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
         .pause-btn {
-            background: rgba(255,255,255,0.2);
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
             color: white;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: none;
             padding: 10px 20px;
             border-radius: 15px;
             cursor: pointer;
-            font-size: 1em;
-            margin-top: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
             transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .pause-btn:hover {
-            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* 响应式设计 - 适配更小的笔记本屏幕 */
+        @media (max-width: 1024px) {
+            .game-container {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+                margin: 10px 20px;
+                max-width: calc(100vw - 40px);
+                max-height: 95vh;
+                align-items: center;
+            }
+
+            .game-title {
+                font-size: 1.6em;
+                margin-bottom: 15px;
+            }
+
+            #gameCanvas {
+                width: 400px;
+                height: 450px;
+            }
+
+            .side-panel {
+                flex-direction: row;
+                flex-wrap: wrap;
+                min-width: auto;
+                max-width: none;
+                max-height: none;
+                gap: 15px;
+                justify-content: center;
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .info-box {
+                flex: 1;
+                min-width: 130px;
+                padding: 12px;
+            }
+
+            .controls {
+                width: 100%;
+                order: 5;
+                padding: 15px;
+            }
+
+            .pause-controls {
+                order: 4;
+                padding: 12px;
+            }
+
+            .score, .level, .lines {
+                font-size: 1.3em;
+            }
+
+            .info-box h3 {
+                font-size: 1.1em;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .game-container {
+                max-height: 98vh;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            #gameCanvas {
+                width: 240px;
+                height: 480px;
+            }
+
+            .game-title {
+                font-size: 1.4em;
+                margin-bottom: 10px;
+            }
+
+            .info-box, .controls, .pause-controls {
+                padding: 10px;
+            }
+
+            .score, .level, .lines {
+                font-size: 1.1em;
+            }
         }
 
         @media (max-width: 768px) {
             .game-container {
-                flex-direction: column;
-                align-items: center;
-                padding: 20px;
+                margin: 5px 10px;
+                padding: 15px;
+                max-width: calc(100vw - 20px);
+            }
+
+            #gameCanvas {
+                width: 220px;
+                height: 440px;
             }
 
             .side-panel {
-                width: 100%;
-                max-width: 300px;
+                gap: 10px;
+            }
+
+            .info-box {
+                min-width: 100px;
+                padding: 10px;
+            }
+
+            .score, .level, .lines {
+                font-size: 1em;
             }
         }
+
     </style>
 </head>
 <body>
     <div class="game-container">
         <div class="game-board">
             <h1 class="game-title">🧩 俄罗斯方块</h1>
-            <canvas id="gameCanvas" width="300" height="600"></canvas>
+            <canvas id="gameCanvas" width="500" height="500"></canvas>
             <div class="game-over" id="gameOver">
                 <h2>游戏结束!</h2>
                 <p>最终得分: <span id="finalScore">0</span></p>
@@ -209,28 +414,44 @@
 
         <div class="side-panel">
             <div class="info-box">
-                <h3>得分</h3>
-                <div class="score" id="score">0</div>
+                <h3>📊 游戏统计</h3>
+                <div class="compact-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">得分:</span>
+                        <span class="stat-value" id="score">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">等级:</span>
+                        <span class="stat-value" id="level">1</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">行数:</span>
+                        <span class="stat-value" id="lines">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">速度:</span>
+                        <span class="stat-value" id="speed">1x</span>
+                    </div>
+                </div>
             </div>
 
             <div class="info-box">
-                <h3>等级</h3>
-                <div class="level" id="level">1</div>
-            </div>
-
-            <div class="info-box">
-                <h3>消除行数</h3>
-                <div class="lines" id="lines">0</div>
+                <h3>🎮 游戏控制</h3>
+                <div class="game-controls">
+                    <div class="control-buttons">
+                        <button class="game-btn" onclick="restartGame()">🎮 新游戏</button>
+                        <button class="game-btn" onclick="togglePause()">⏸️ 暂停</button>
+                    </div>
+                </div>
             </div>
 
             <div class="info-box">
                 <h3>下一个方块</h3>
                 <canvas id="nextCanvas" width="120" height="80"></canvas>
-                <button class="pause-btn" onclick="togglePause()">暂停</button>
             </div>
 
-            <div class="controls">
-                <h3>操作说明</h3>
+            <div class="info-box">
+                <h3>📖 操作说明</h3>
                 <table>
                     <tr>
                         <td>←/→</td>
@@ -263,9 +484,9 @@
         const nextCanvas = document.getElementById('nextCanvas');
         const nextCtx = nextCanvas.getContext('2d');
 
-        const BOARD_WIDTH = 10;
+        const BOARD_WIDTH = 20;
         const BOARD_HEIGHT = 20;
-        const BLOCK_SIZE = 30;
+        const BLOCK_SIZE = 25;
 
         // 方块形状定义
         const TETROMINOES = {
@@ -433,6 +654,7 @@
             document.getElementById('score').textContent = score;
             document.getElementById('level').textContent = level;
             document.getElementById('lines').textContent = lines;
+            document.getElementById('speed').textContent = level + 'x';
         }
 
         // 绘制方块
@@ -495,10 +717,12 @@
             nextCtx.fillRect(0, 0, nextCanvas.width, nextCanvas.height);
 
             if (nextPiece) {
-                const blockSize = 20;
+                const blockSize = 25;
                 const offsetX = (nextCanvas.width - nextPiece.shape[0].length * blockSize) / 2;
                 const offsetY = (nextCanvas.height - nextPiece.shape.length * blockSize) / 2;
 
+                nextCtx.save();
+                nextCtx.translate(offsetX, offsetY);
                 for (let y = 0; y < nextPiece.shape.length; y++) {
                     for (let x = 0; x < nextPiece.shape[y].length; x++) {
                         if (nextPiece.shape[y][x]) {
@@ -506,6 +730,7 @@
                         }
                     }
                 }
+                nextCtx.restore();
             }
         }
 
@@ -645,8 +870,32 @@
             currentPiece = createPiece();
             nextPiece = createPiece();
             updateDisplay();
+
+            // 响应式调整画布尺寸
+            adjustCanvasSize();
+
             requestAnimationFrame(gameLoop);
         }
+
+        // 调整画布尺寸以适配屏幕
+        function adjustCanvasSize() {
+            const canvas = document.getElementById('gameCanvas');
+
+            // 确保画布内部尺寸与CSS尺寸匹配
+            if (window.innerWidth <= 768) {
+                canvas.width = 350;
+                canvas.height = 450;
+            } else if (window.innerWidth <= 1024) {
+                canvas.width = 400;
+                canvas.height = 450;
+            } else {
+                canvas.width = 500;
+                canvas.height = 500;
+            }
+        }
+
+        // 监听窗口大小变化
+        window.addEventListener('resize', adjustCanvasSize);
 
         // 启动游戏
         initGame();

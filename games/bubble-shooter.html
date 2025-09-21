@@ -7,24 +7,34 @@
     <style>
         body {
             margin: 0;
-            padding: 20px;
+            padding: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             color: white;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .game-container {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             background: rgba(0,0,0,0.3);
-            padding: 30px;
+            padding: 20px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-height: 95vh;
+            max-width: 1200px;
+            margin: 15px 40px;
+            box-sizing: border-box;
+            max-width: calc(100vw - 80px);
+            max-height: 90vh;
+            overflow: hidden;
+            align-items: flex-start;
         }
 
         .game-board {
@@ -33,8 +43,8 @@
 
         .game-title {
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 2em;
+            margin-bottom: 15px;
+            font-size: 1.8em;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
@@ -45,27 +55,32 @@
             background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             cursor: crosshair;
+            width: 500px;
+            height: 500px;
         }
 
         .side-panel {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            min-width: 200px;
+            gap: 15px;
+            min-width: 280px;
+            max-width: 300px;
+            height: fit-content;
+            max-height: 500px;
         }
 
         .info-box {
             background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 15px;
+            border-radius: 12px;
             border: 2px solid rgba(255,255,255,0.2);
             text-align: center;
         }
 
         .info-box h3 {
-            margin: 0 0 15px 0;
+            margin: 0 0 10px 0;
             color: #4ecdc4;
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
 
         .score {
@@ -117,6 +132,86 @@
             margin: 8px 0;
             font-size: 0.9em;
             line-height: 1.4;
+        }
+
+        /* 紧凑布局样式 */
+        .game-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+
+        .shooter-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .next-bubble-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .next-bubble-label {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .power-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .power-label {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .compact-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            font-size: 0.85em;
+        }
+
+        .control-icon {
+            font-size: 1.1em;
+            min-width: 20px;
+        }
+
+        .control-text {
+            color: rgba(255,255,255,0.9);
         }
 
         .game-over {
@@ -217,7 +312,7 @@
     <div class="game-container">
         <div class="game-board">
             <h1 class="game-title">🎱 泡泡龙</h1>
-            <canvas id="gameCanvas" width="400" height="600"></canvas>
+            <canvas id="gameCanvas" width="500" height="500"></canvas>
             <div class="combo-indicator" id="comboIndicator"></div>
             <div class="game-over" id="gameOver">
                 <h2>游戏结束!</h2>
@@ -230,41 +325,63 @@
 
         <div class="side-panel">
             <div class="info-box">
-                <h3>得分</h3>
-                <div class="score" id="score">0</div>
-            </div>
-
-            <div class="info-box">
-                <h3>关卡</h3>
-                <div class="level" id="level">1</div>
-            </div>
-
-            <div class="info-box">
-                <h3>剩余泡泡</h3>
-                <div class="bubbles-left" id="bubblesLeft">0</div>
-            </div>
-
-            <div class="info-box">
-                <h3>下一个泡泡</h3>
-                <div class="next-bubble">
-                    <div class="next-bubble-circle" id="nextBubble"></div>
+                <h3>📊 游戏状态</h3>
+                <div class="game-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">得分:</span>
+                        <span class="stat-value" id="score">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">关卡:</span>
+                        <span class="stat-value" id="level">1</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">剩余:</span>
+                        <span class="stat-value" id="bubblesLeft">0</span>
+                    </div>
                 </div>
             </div>
 
             <div class="info-box">
-                <h3>发射力度</h3>
-                <div class="power-meter">
-                    <div class="power-fill" id="powerFill"></div>
+                <h3>🎯 发射信息</h3>
+                <div class="shooter-info">
+                    <div class="next-bubble-container">
+                        <div class="next-bubble-label">下一个泡泡:</div>
+                        <div class="next-bubble-circle" id="nextBubble"></div>
+                    </div>
+                    <div class="power-container">
+                        <div class="power-label">发射力度:</div>
+                        <div class="power-meter">
+                            <div class="power-fill" id="powerFill"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="controls">
-                <h3>操作说明</h3>
-                <p>🖱️ <strong>鼠标移动</strong><br>瞄准发射方向</p>
-                <p>🖱️ <strong>按住左键</strong><br>蓄力发射</p>
-                <p>🎯 <strong>松开左键</strong><br>发射泡泡</p>
-                <p>⚡ <strong>连击消除</strong><br>获得额外加分</p>
-                <p>🏆 <strong>清除所有泡泡</strong><br>进入下一关</p>
+            <div class="info-box">
+                <h3>🎮 操作指南</h3>
+                <div class="compact-controls">
+                    <div class="control-row">
+                        <span class="control-icon">🖱️</span>
+                        <span class="control-text">鼠标移动瞄准</span>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-icon">👆</span>
+                        <span class="control-text">按住左键蓄力</span>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-icon">🎯</span>
+                        <span class="control-text">松开左键发射</span>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-icon">⚡</span>
+                        <span class="control-text">连击消除加分</span>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-icon">🏆</span>
+                        <span class="control-text">清除泡泡过关</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -695,8 +812,8 @@
             countBubblesLeft();
             updateDisplay();
 
-            // 检查游戏结束
-            if (bestRow <= 1) {
+            // 检查游戏结束 - 当泡泡堆积到接近底部时
+            if (bestRow >= ROWS - 3) {
                 gameOver();
                 return;
             }

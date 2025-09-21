@@ -15,16 +15,20 @@
             align-items: center;
             min-height: 100vh;
             color: white;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .game-container {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             background: rgba(0,0,0,0.3);
-            padding: 30px;
+            padding: 20px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-height: 95vh;
+            max-width: 1200px;
         }
 
         .game-board {
@@ -33,85 +37,85 @@
 
         .game-title {
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 2em;
+            margin-bottom: 15px;
+            font-size: 1.8em;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         #gameCanvas {
             border: 3px solid #fff;
-            border-radius: 15px;
+            border-radius: 12px;
             background: linear-gradient(180deg, #001122 0%, #003366 50%, #004488 100%);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
             cursor: none;
+            width: 400px;
+            height: 500px;
         }
 
         .side-panel {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            min-width: 200px;
+            gap: 15px;
+            min-width: 280px;
+            max-width: 300px;
+            height: fit-content;
+            max-height: 500px;
         }
 
         .info-box {
             background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 8px;
+            border-radius: 10px;
             border: 2px solid rgba(255,255,255,0.2);
             text-align: center;
         }
 
+        .info-box:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
         .info-box h3 {
-            margin: 0 0 15px 0;
+            margin: 0 0 6px 0;
             color: #4ecdc4;
-            font-size: 1.2em;
+            font-size: 1em;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         .score {
-            font-size: 1.5em;
+            font-size: 1.3em;
             font-weight: bold;
             color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
         }
 
         .level {
-            font-size: 1.2em;
+            font-size: 1.1em;
+            font-weight: bold;
             color: #45b7d1;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         .lives {
             font-size: 1.1em;
-            color: #96ceb4;
-        }
-
-        .power-ups {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 10px;
-        }
-
-        .power-up {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8em;
         }
 
         .controls {
             background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 8px;
+            border-radius: 10px;
             border: 2px solid rgba(255,255,255,0.2);
         }
 
         .controls h3 {
-            margin: 0 0 15px 0;
+            margin: 0 0 6px 0;
             color: #4ecdc4;
             text-align: center;
+            font-size: 1em;
         }
 
         .controls table {
@@ -120,14 +124,89 @@
         }
 
         .controls td {
-            padding: 8px;
+            padding: 3px;
             text-align: left;
-            font-size: 0.9em;
+            font-size: 0.75em;
         }
 
         .controls td:first-child {
             font-weight: bold;
             color: #ff6b6b;
+        }
+
+        .game-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .game-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .game-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .game-btn.full-width {
+            width: 100%;
+        }
+
+        .status-display {
+            font-size: 0.8em;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 2px 0;
+        }
+
+        .status-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .status-value {
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+
+        .weapon-display {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 4px;
+        }
+
+        .weapon-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7em;
+            background: #666;
+        }
+
+        .weapon-icon.active {
+            background: #4ecdc4;
+            border-color: #fff;
         }
 
         .game-over {
@@ -175,30 +254,13 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .pause-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 2px solid rgba(255,255,255,0.3);
-            padding: 10px 20px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 1em;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .pause-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
         .level-progress {
             width: 100%;
-            height: 20px;
+            height: 12px;
             background: rgba(255,255,255,0.2);
-            border-radius: 10px;
+            border-radius: 6px;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 6px;
         }
 
         .progress-fill {
@@ -208,41 +270,9 @@
             transition: width 0.3s ease;
         }
 
-        @media (max-width: 768px) {
-            .game-container {
-                flex-direction: column;
-                align-items: center;
-                padding: 20px;
-            }
-
-            .side-panel {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-
-        .combo-indicator {
+        .power-indicator {
             position: absolute;
             top: 20px;
-            right: 20px;
-            background: rgba(255,215,0,0.9);
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1.2em;
-            display: none;
-            animation: comboFade 2s ease-out;
-        }
-
-        @keyframes comboFade {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.2); }
-        }
-
-        .power-up-indicator {
-            position: absolute;
-            top: 60px;
             right: 20px;
             background: rgba(0,255,0,0.8);
             color: #000;
@@ -259,15 +289,52 @@
             70% { opacity: 1; }
             100% { opacity: 0; }
         }
+
+        .combo-indicator {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: rgba(255,215,0,0.9);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: none;
+            animation: comboFade 2s ease-out;
+        }
+
+        @keyframes comboFade {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.2); }
+        }
+
+        @media (max-width: 1024px) {
+            .game-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+            }
+
+            .side-panel {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            #gameCanvas {
+                width: 350px;
+                height: 450px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="game-container">
         <div class="game-board">
             <h1 class="game-title">🚀 飞机大战</h1>
-            <canvas id="gameCanvas" width="400" height="600"></canvas>
+            <canvas id="gameCanvas" width="400" height="500"></canvas>
+            <div class="power-indicator" id="powerIndicator"></div>
             <div class="combo-indicator" id="comboIndicator"></div>
-            <div class="power-up-indicator" id="powerUpIndicator"></div>
             <div class="game-over" id="gameOver">
                 <h2>游戏结束!</h2>
                 <p>最终得分: <span id="finalScore">0</span></p>
@@ -279,42 +346,59 @@
         </div>
 
         <div class="side-panel">
+            <!-- 得分和关卡 -->
             <div class="info-box">
-                <h3>得分</h3>
-                <div class="score" id="score">0</div>
-            </div>
-
-            <div class="info-box">
-                <h3>关卡</h3>
-                <div class="level" id="level">1</div>
+                <h3>得分 & 关卡</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <div style="text-align: left;">
+                        <div style="font-size: 0.9em; color: rgba(255,255,255,0.8);">得分</div>
+                        <div class="score" id="score">0</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.9em; color: rgba(255,255,255,0.8);">关卡</div>
+                        <div class="level" id="level">1</div>
+                    </div>
+                </div>
                 <div class="level-progress">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
             </div>
 
+            <!-- 生命值 -->
             <div class="info-box">
                 <h3>生命值</h3>
                 <div class="lives" id="lives">❤️❤️❤️</div>
             </div>
 
+            <!-- 武器状态 -->
             <div class="info-box">
-                <h3>当前火力</h3>
-                <div class="power-ups">
-                    <div class="power-up" id="weapon1" style="background: #4ecdc4;">🔫</div>
-                    <div class="power-up" id="weapon2" style="background: #666;">🔫</div>
-                    <div class="power-up" id="weapon3" style="background: #666;">🔫</div>
+                <h3>武器火力</h3>
+                <div class="weapon-display">
+                    <div class="weapon-icon active" id="weapon1">🔫</div>
+                    <div class="weapon-icon" id="weapon2">🔫</div>
+                    <div class="weapon-icon" id="weapon3">🔫</div>
                 </div>
             </div>
 
+            <!-- 游戏状态 -->
             <div class="info-box">
                 <h3>游戏状态</h3>
-                <div style="font-size: 0.9em;">
-                    <div>敌机: <span id="enemyCount">0</span></div>
-                    <div>时间: <span id="gameTime">0</span>s</div>
+                <div class="status-display">
+                    <div class="status-item">
+                        <span class="status-label">敌机:</span>
+                        <span class="status-value" id="enemyCount">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">时间:</span>
+                        <span class="status-value" id="gameTime">0</span>s
+                    </div>
                 </div>
-                <button class="pause-btn" onclick="togglePause()">暂停</button>
+                <div class="game-controls">
+                    <button class="game-btn full-width" onclick="togglePause()">暂停</button>
+                </div>
             </div>
 
+            <!-- 操作说明 - 移到最下方 -->
             <div class="controls">
                 <h3>操作说明</h3>
                 <table>
@@ -335,11 +419,8 @@
                         <td>暂停游戏</td>
                     </tr>
                 </table>
-                <div style="margin-top: 15px; font-size: 0.8em; opacity: 0.8;">
-                    <strong>道具说明:</strong><br>
-                    🔵 双倍火力<br>
-                    🟢 三倍火力<br>
-                    🟡 护盾保护
+                <div style="margin-top: 4px; font-size: 0.65em; opacity: 0.8; line-height: 1;">
+                    <strong>道具:</strong> 🔵双倍 🟢三倍 🟡护盾
                 </div>
             </div>
         </div>
@@ -762,7 +843,7 @@
 
         // 显示道具提示
         function showPowerUp(text) {
-            const powerUpElement = document.getElementById('powerUpIndicator');
+            const powerUpElement = document.getElementById('powerIndicator');
             powerUpElement.textContent = text;
             powerUpElement.style.display = 'block';
             setTimeout(() => {
@@ -799,9 +880,9 @@
             weapons.forEach((weapon, index) => {
                 const element = document.getElementById(weapon);
                 if (index < weaponLevel) {
-                    element.style.background = '#4ecdc4';
+                    element.classList.add('active');
                 } else {
-                    element.style.background = '#666';
+                    element.classList.remove('active');
                 }
             });
         }
@@ -858,7 +939,7 @@
         function togglePause() {
             if (gameRunning) {
                 isPaused = !isPaused;
-                document.querySelector('.pause-btn').textContent = isPaused ? '继续' : '暂停';
+                document.querySelector('.game-btn').textContent = isPaused ? '继续' : '暂停';
             }
         }
 
